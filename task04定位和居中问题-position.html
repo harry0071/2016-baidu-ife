@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>task04定位和居中问题-position</title>
+<style type="text/css">
+body {
+	margin: 0;
+}
+
+a {
+	background: red;
+	color: white;
+	line-height: 40px;
+	font-size: 20px;
+	padding: 10px;
+	text-decoration: none;
+	}
+.link{position: absolute;top: 0;}/* 加上这一条后，避免了a链接和p标签的宽高对box的居中产生影响 */
+a:hover {
+	background: pink;
+}
+
+.box {
+	width: 400px;
+	height: 200px;
+	background: #ccc;
+	overflow: hidden;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	margin-left: -200px;
+	margin-top: -100px;
+}
+
+/* 先top和left都设为50%，然而是以顶边和左边为边界线，所以要用负的margin拉一半的px回来 */
+.circle1, .circle2 {
+	width: 100px;
+	height: 100px;
+	background: #fc0;
+	border-radius: 50%;
+	position: absolute;
+}
+
+/* 也可以用border-radius: 0 0 50px 0实现扇形 */
+.circle1 {
+	top: -50px;
+	left: -50px;
+}
+
+.circle2 {
+	bottom: -50px;
+	right: -50px;
+}
+</style>
+</head>
+<body>
+<div class="link">
+	<a href="task04定位和居中问题-position.html">position法</a>
+	<a href="task04定位和居中问题-table.html">table法</a>
+	<a href="task04定位和居中问题-flex.html">flex法</a>
+	<p>position法实现垂直居中定位</p>
+</div>
+	<div class="box">
+		<div class="circle1"></div>
+		<div class="circle2"></div>
+	</div>
+</body>
+</html>
