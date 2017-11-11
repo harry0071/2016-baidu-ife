@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>task09</title>
+<script src="https://use.fontawesome.com/86f29a7ed7.js"></script>
+<link rel="stylesheet" type="text/css" href="normalize.css">
+<style>
+	*{box-sizing: border-box;}
+	html,body{min-width: 1280px;}
+	#container{background: #eeeeed;}
+	header{width: 100%;height: 56px;background: #2189bf;position: relative;}
+	#header-1{margin: 10px 3.90625%;}/*50px/1280px*/
+	.header-right{width: 30%;display: inline-block;position: absolute;right: 5.3125%;margin-top: 14px;}
+	#search{width: 82%;;height: 28px;border: 0;border-radius: 14px;padding-left: 36px;outline: 0;}
+	#header-2{margin-left: -80%;}
+	#login{background: url(img/task09/header-3.png) no-repeat;width: 43px;height: 16px;display: inline-block;float: right;margin-top: 6px;}
+	#login a{font-size: 12px;color: #fff;margin-left: 19px;}
+
+	#main{width: 1280px;height: 1210px;margin: 0 auto;}
+	#left{width: 260px;height: 100%;background: #2a2e3d;float: left;}
+	#left-1{height: : 150px;}
+	#face{margin:23px 24px 23px 51px;}
+	#face img{width: 47px;height: 47px;border-radius: 50%;box-shadow: 0 0 0 3px #2a2e3d,0 0 0 4px #b9babd;}
+	#name{color: #ecebec;vertical-align: top;line-height: 47px;margin-left: 18px;font-family: SimHei;}
+	#collect{width: 120px;height: 28px;border-right: 2px solid #313545;padding: 0 31px 0 63px;display: inline-block;}
+	.num{color: #6a7c90;font-size: 16px;font-family: SimHei;}
+	.describe{color: #6a7c90;font-size: 12px;font-family: SimSun;}
+	#fans{display: inline-block;width: 135px;padding-left: 25px;}
+
+	#list{margin-top: 23px;}
+	#list li{color: #6e8096;font-size: 12px;font-family: SimHei;padding-left:46px;height: 48px;line-height: 48px;cursor: pointer;}
+	#list li:hover{background: #383d4e;}
+	.fa{padding-right: 7px;}
+	#list .list-selected{background: #383d4e;color: #ededf0;height: 100%;}
+	#files li{font-size: 12px;font-family: SimHei;color: #6e8095;margin-left: -24px;margin-top: -20px;}
+	#files .fa{padding-right: 6px;}
+	#files .fa2{margin-left: -4px;margin-right: -8px;}
+
+	#files .files-open{color: #ededf0;height: 100%;}
+	#opened li{color: #ededf0;}
+	#opened i{margin-right: -8px;margin-left: 15px;}
+
+	#right{float: left;width: 1020px;height: 100%;background: #eeeeed;}
+	#right nav{height: 30px;background: #fff;color: #c3c3c3;font-size: 12.28px;font-family: SimHei;padding-left: 30px;width: calc(100% - 69px);}
+	#right nav a{line-height: 30px;color: #c3c3c3;}
+	#right nav a:hover{color: #75a0c6;}
+
+	#content{margin: 19px 69px 0 59px;}
+
+	#section-1{height: 87px;background: #fff;border: 1px solid #dcdedf;border-bottom: 2px solid #e5e6e6;position: relative;margin-bottom: 8px;}
+	#section-1 .fa{pointer-events: none;color: #000;font-weight: bold;}
+	#project{width: 150px;height: 100%;color: #aaa;font-size: 12px;font-family: SimHei;left: 30px;display: inline-block;position: relative;top: -30px;}
+	select{-webkit-appearance: none;font-size: 12px;font-family: SimHei;}
+	#project select{width: 70px;height: 25px;border: 1px solid #c3c4c4;margin-left: 8px;padding-left: 8px;}
+	#project .fa{position: absolute;top: 7px;right: 32px;}
+	#people{width: 187px;margin-left: 30px;display: inline-block;height: 100%;padding-top: 15px;color: #aaa;font-size: 12px;font-family: SimHei;position: relative;}
+	#people select{width: 121px;height: 25px;border: 1px solid #c3c4c4;margin-bottom: 5px;margin-left: 12px;padding-left: 8px;}
+	#buy .fa, #sell .fa{position: absolute;right: 28px;}
+	#buy .fa{top: 20px;}
+	#sell .fa{top: 50px;}
+	select:focus + .fa{color: #5690c8;}
+	.change{background: url(img/task09/change.png) no-repeat;width: 27px;height: 37px;position: absolute;top: 23px;right: -4px;}
+	.change span{position: absolute;top: 13px;right: 2px;color: #fff;}
+	#time{width: 291px;height: 84px;position: absolute;left: 409px;top: 0;margin-top: 15px;}
+	#section-1 input[type="submit"]{position: absolute;top: 31px;left: 728px;color: #fff;width: 50px;height: 25px;background: #388ac1;font-size: 12px;font-family: SimHei;cursor: pointer;}
+	#section-1 input[type="submit"]:hover{background: #236b9b;}
+	#time span{font-size: 12px;font-family: SimHei;color: #b7b7b7;}
+	#time span:nth-of-type(odd){margin-right: 8px;}
+	#time span:nth-of-type(even){margin-left: 8px;}
+	#time select{padding-left: 8px;height: 25px;border: 1px solid #cacbcb;margin-bottom: 4px;}
+	#time select + .fa{margin-left: -20px;font-size: 12px;}
+	#time select:nth-of-type(1){width: 121px;}
+	#time select:nth-of-type(2){width: 70px;}
+	#time select:nth-of-type(3){width: 71px;}
+	#time select:nth-of-type(4){width: 120px;}
+
+	#section-2{width: 100%;height: 65px;margin-bottom: 22px;}
+	#section-2 a{width: 30px;height: 65px;color: #cacdd1;float: left;line-height: 65px;}
+	#section-2 a:hover{background: #eaeef2;}
+	#section-2 a,#section-2 li,#history{border-top: 1px solid #cacdd1;border-left: 1px solid #cacdd1;text-align: center;background: white;cursor: pointer;}
+	#section-2 a:first-of-type{margin-right: 5px;}
+	#detail li{width: 110px;height: 65px;float: left;margin-right: 5px;padding-top: 12px;}
+	#detail li:hover{border-top: 3px solid #4388c9;padding-top: 10px;}
+	.time2{font-size: 12px;font-family: Microsoft YaHei;}
+	.money2{margin-top: 8px;color: #aeaead;}
+	.money2 span{font-size: 21px;color: #ec6500;font-family: Microsoft YaHei;}
+	#history{width: 131px;height: 100%;float: left;margin-left: 4px;line-height: 65px;}
+	#history .fa{color: #388bc2;font-size: 30px;}
+	#history span{font-size: 12px;font-family: Microsoft YaHei;}
+
+	#section-3{margin-bottom: 13px;}
+	#section-3 h3{font-size: 12px;font-family: Microsoft YaHei;font-weight: normal;}
+	/*成交量volume*/
+	#volume li{width: 201px;background: white;height: 72px;float: left;border: 1px solid #d3d4d8;margin-right: 29px;margin-top: 4px;position: relative;}
+	#volume li:last-of-type{margin-right: 0;}
+	#volume .green{border-left: 3px solid #43b29d;}
+	#volume .blue{border-left: 3px solid #388ac1;}
+	#volume .red{border-left: 3px solid #cf4a36;}
+	#volume .yellow{border-left: 3px solid #e2cd47;}
+	#volume li p{width: 44px;font-family: SimHei;}
+	#volume li p:nth-of-type(1){font-size: 12px;color: #323333;;padding-top: 20px;padding-bottom: 13px;padding-left: 10px;margin-right: 0;}
+	#volume li p:nth-of-type(2){font-size: 10px;color: #aaa;padding-left: 8px;}
+	.Div{width: 60px;height: 46px;position: absolute;left: 124px;bottom: 12px;}
+	.greenDiv{background: #43b29d;}
+	.blueDiv{background: #388ac1;}
+	.redDiv{background: #cf4a36;}
+	.yellowDiv{background: #e2cd47;}
+
+	#section-4{height: 356px;margin-bottom: 8px;}
+	#project-table{width: 531px;border: 1px solid #cacbcb;border-radius: 6px;background: white;overflow: hidden;height: 100%;float: left;margin-right: 8px;}
+	.title{height: 40px;background: #f4f5f6;font-size: 12px;font-family: SimHei;color: #aaa;padding-left: 20px;line-height: 40px;}
+	#project-detail{width: 352px;background: white;height: 100%;float: left;border: 1px solid #cacbcb;border-radius: 6px;overflow: hidden;}
+	#project-tab{margin-top: 12px;margin-left: 20px;}
+	#project-tab li{float: left;width: 84px;height: 28px;background: #ededf0;font-size: 12px;font-family: Microsoft YaHei;margin-right: 5px;text-align: center;line-height: 28px;border-radius: 4px 4px 0 0;cursor: pointer;}
+	.table{width: 490px;height: 251px;border: 2px solid #e1e1e2;border-radius: 0 4px 4px 4px;margin-top: -2px;}
+	table{border-collapse: collapse;width: 403px;margin: 28px auto;border:1px solid #d6d6d7;}
+	tr,td{border-color: #d6d6d7;color: #616164;font-size: 12px;font-family: SimSun;}
+	.table td:hover{background: #f4f5f6;}
+
+	#detail-title{width: 280px;height: 58px;border-bottom: 1px solid #e7e8e8;padding-left: 16px;padding-top: 17px;margin-left: 35px;font-weight: normal;font-size: 12px;font-family: Microsoft YaHei;line-height: 16px;}
+	#detail-title h4{color: #c3c2c2;}
+	#detail-title p{color: 535353;}
+	#price{width: 96px;height: 43px;border-right: 1px solid #e7e8e8;margin-left: 34px;padding-left: 15px;padding-top: 4px;float: left;}
+	.p1{color: #c3c2c2;font-size: 12px;font-family: Microsoft YaHei;margin-bottom: 4px;}
+	.p2{color: #535353;font-size: 12px;font-family: Microsoft YaHei;}
+	#manger{width: 220px;height: 43px;padding-left: 11px;padding-top: 4px;float: left;}
+	#detail-describe{margin-left: 34px;border-top: 1px solid #e7e8e8;width: 316px;height: 146px;float: left;padding-left: 15px;padding-top: 4px;}
+	#detail-describe p:nth-of-type(1){font-size: 12px;color: #c3c2c2;font-family: Microsoft YaHei;margin-bottom: 4px;}
+	#detail-describe p:nth-of-type(2){font-size: 12px;color: #535353;font-family: Microsoft YaHei;}
+	#secret{width: 281px;border-top: 1px solid #e7e8e8;float: left;margin-left: 34px;}
+	#checkbox{margin-top: 10px;float: left;margin-left: 5px;}
+	#checkbox + span{font-size: 12px;color: #c3c2c2;float: left;margin-top: 10px;margin-left: 8px;}
+	#secret input[type="button"]{color: white;width: 50px;height: 26px;background: #398bc2;line-height: 26px;font-size: 12px;font-family: SimHei;margin-left: 132px;margin-top: 5px;cursor: pointer;}
+	#secret input[type="button"]:hover{background: #236b9b;}
+
+	#section-5{width: 890px;height: 358px;}
+	#calendar{width: 351px;height: 100%;border: 1px solid #bec3c8;border-radius: 6px;overflow: hidden;float: left;background: white;padding: 0 20px;}
+	#calendar:before{content: "日历";height: 40px;background: #f4f5f7;display: inline-block;width: calc(100% + 40px);color: #aaa;font-size: 12px;font-family: Microsoft YaHei;padding-left: 21px;border-bottom: 1px solid #e7e8eb;line-height: 40px;margin-left: -20px;}
+	#date .year{width: 64px;height: 22px;padding-left: 4px;font-size: 12px;font-family: SimHei;border: 1px solid #cccccd;margin-top: 10px;margin-left: 2px;}
+	.year + .fa{width: 20px;height: 21px;line-height: 22px;color: #c2c3c3;font-size: 12px;position: relative;right: 25px;top: 2px;border-left: 1px solid #f5f6f7;pointer-events: none;padding: 0;text-align: center;}
+	#date .month{width: 85px;height: 22px;border: 1px solid #cccccd;padding-left: 26px;font-size: 12px;margin-left: -22px;}
+	#date .month ~ .fa{width: 19px;height: 21px;line-height: 20px;text-align: center;pointer-events: none;color: #c2c3c3;font-size: 12px;position: relative;padding: 0;}
+	#date .left{right: 90px;border-right: 1px solid #f5f6f7;}
+	#date .down{right: 68px;border-right: 1px solid #f5f6f7;}
+	#date .right{right: 72px;}
+	#date .day{width: 75px;height: 22px;border: 1px solid #cccccd;padding-left: 5px;margin: -70px;}
+	#date .day + .fa{width: 19px;height: 21px;line-height: 20px;text-align: center;pointer-events: none;color: #c2c3c3;font-size: 12px;position: relative;padding: 0;right: -47px;border-left: 1px solid #f5f6f7;}
+	.today{width: 64px;height: 22px;border: 1px solid #cccccd;font-size: 12px;color: black;text-align: center;line-height: 20px;position: relative;top: 2px;left: 47px;}
+	.today:hover{border-color: #388ac1;color: #388ac1;}
+
+	#week{border-top: 1px solid #a9cfec;border-bottom: 1px solid #e1e1e1;height: 31px;width: 100%;text-align: center;line-height: 31px;margin-top: 10px;}
+	#week li{float: left;width: calc(100% / 7);font-size: 12px;font-family: SimHei;}
+	.calendar li{float: left;width: calc(100% / 7 - 4px);height: 41px;margin: 2px;padding-top: 6px;cursor: pointer;border: 1px solid transparent;}
+	.calendar li:hover{border-color: #f4c21d;}
+	.calendar li p{font-size: 11.36px;font-family: SimHei;text-align: center;margin-top: 2px;}
+	.calendar li:nth-of-type(7n-1) p:first-of-type{color: #cd3539;/*周六7n-1*/}
+	.calendar li:nth-of-type(7n) p:first-of-type{color: #cd3539;/*周日7n*/}
+	.calendar li:empty{border: 0;cursor: auto;}
+	.holiday{color: #cd3539;}
+	
+
+	#car{width: 530px;height: 100%;background: red;float: left;overflow: hidden;border: 1px solid #bec3c8;border-radius: 6px;margin-left: 9px;background: white;}
+	#car:before{content: "汽车行业品牌榜";height: 40px;background: #f4f5f7;display: inline-block;width: 100%;color: #aaa;font-size: 12px;font-family: Microsoft YaHei;padding-left: 21px;border-bottom: 1px solid #e7e8eb;line-height: 40px;}
+	#car-table{margin: 18px 40px;width: 450px;}
+	#car-table tr td{color: black;}
+	#car-table thead tr td:nth-of-type(1){width: 67px;height: 28px;font-size: 13px;font-family: SimHei;text-align: center;}
+	#car-table thead tr td:nth-of-type(2){width: 91px;font-size: 13px;font-family: SimHei;text-align: center;}
+	#car-table thead tr td:nth-of-type(3){font-size: 13px;font-family: SimHei;padding-left: 29px;}
+	#car-table tbody tr{cursor: pointer;}
+	#car-table tbody tr:hover{background: #f4f5f6;}
+	#car-table tbody tr td:nth-of-type(1){height: 25px;font-size: 12px;font-family: SimHei;text-align: center;}
+	#car-table tbody tr td:nth-of-type(2){font-size: 12px;font-family: SimHei;text-align: center;}
+	#car-table tbody tr td:nth-of-type(3){font-size: 12px;font-family: SimHei;padding-left: 34px;}
+	.bar{width: 167px;height: 4px;background: #dcdcdc;display: inline-block;position: relative;margin-left: 15px;}
+	.bar:after{content: "";height: 100%;display: inline-block;position: absolute;}
+	.bar1:after{background: #ed6e52;width: 80%;}
+	.bar2:after{background: #ef8150;width: 70%;}
+	.bar3:after{background: #f19e4f;width: 60%;}
+	.bar4:after{background: #7fcbf0;width: 50%;}
+	.bar5:after{background: #7fcbf0;width: 45%;}
+	.bar6:after{background: #7fcbf0;width: 40%;}
+	.bar7:after{background: #7fcbf0;width: 35%;}
+	.bar8:after{background: #7fcbf0;width: 30%;}
+	.bar9:after{background: #7fcbf0;width: 25%;}
+	.bar10:after{background: #7fcbf0;width: 20%;}
+
+</style>
+</head>
+<body>
+<div id="container">
+	<header>
+		<img src="img/task09/header-1.png" id="header-1">
+		<div class="header-right">
+			<input type="search" id="search">
+			<img src="img/task09/header-2.png" id="header-2">
+			<div id="login">
+				<a href="###">登录</a>
+			</div>
+		</div>
+	</header>
+
+	<div id="main">
+		<!-- 左侧部分 -->
+		<div id="left">
+			<div id="left-1">
+				<div id="face">
+					<img src="img/logo.jpg">
+					<span id="name">stage</span>
+				</div>
+			</div>
+			<div id="collect">
+				<p class="num">110</p>
+				<p class="describe">收藏</p>
+			</div>
+			<div id="fans">
+				<p class="num">313</p>
+				<p class="describe">粉丝</p>
+			</div>
+
+			<ul id="list">
+				<li class="list-selected">
+					<i class="fa fa-file" aria-hidden="true"></i>
+					个人报表
+					<ul id="files">
+						<li>
+							<i class="fa fa-chevron-right" aria-hidden="true"></i>
+							<i class="fa fa2 fa-folder-open" aria-hidden="true"></i>
+							文件一
+						</li>
+						<li class="files-open">
+							<i class="fa fa fa-chevron-down" aria-hidden="true"></i>
+							<i class="fa fa2 fa-folder-open" aria-hidden="true"></i>
+							文件二
+							<ul id="opened">
+								<li>
+									<i class="fa fa-file-word-o" aria-hidden="true"></i>
+									文档1
+								</li>
+								<li>
+									<i class="fa fa-file-word-o" aria-hidden="true"></i>
+									文档1
+								</li>
+							</ul>
+						</li>
+						<li>
+							<i class="fa fa-chevron-right" aria-hidden="true"></i>
+							<i class="fa fa2 fa-folder-open" aria-hidden="true"></i>
+							文件三
+						</li>
+					</ul>
+				</li>
+				<li>
+					<i class="fa fa-star" aria-hidden="true"></i>
+					个人收藏
+				</li>
+				<li>
+					<i class="fa fa-share-alt" aria-hidden="true"></i>
+					我的分享</li>
+				<li>
+					<i class="fa fa-star" aria-hidden="true"></i>
+					图库
+				</li>
+				<li>
+					<i class="fa fa-star" aria-hidden="true"></i>
+					成长记录
+				</li>
+				<li>
+					<i class="fa fa-user" aria-hidden="true"></i>
+					账户信息
+				</li>
+			</ul>			
+		</div>
+
+		<!-- 右侧部分 -->
+		<div id="right">
+			<nav>
+				<a href="###">C站</a>
+				/
+				<a href="###">个人报表</a>
+				/
+				<a href="###">文件一</a>
+				/
+				<a href="###">文档一</a>
+			</nav>
+
+			<div id="content">
+				<section id="section-1">
+					<form>
+						<div id="project">
+							查询项
+							<select>
+								<option>第一项</option>
+								<option>第二项</option>
+							</select>
+								<i class="fa fa-angle-down" aria-hidden="true"></i>
+						</div>
+						<div id="people">
+							<div id="buy">
+								买方
+								<select>
+									<option>小A</option>
+									<option>小B</option>
+								</select>
+								<i class="fa fa-angle-down" aria-hidden="true"></i>
+							</div>
+							<div id="sell">
+								卖方
+								<select>
+									<option>小C</option>
+									<option>小D</option>
+								</select>
+								<i class="fa fa-angle-down" aria-hidden="true"></i>
+							</div>
+							<a href="###" class="change"><span>换</span></a>
+						</div>
+						<div id="time">
+							<span>日期</span>
+							<select>
+								<option>2016-04-01</option>
+							</select>
+							<i class="fa fa-angle-down" aria-hidden="true"></i>
+							<span>总耗时</span>
+							<select>
+								<option>8天</option>
+							</select>
+							<i class="fa fa-angle-down" aria-hidden="true"></i>
+							<span>人数</span>
+							<select>
+								<option>10人</option>
+							</select>
+							<i class="fa fa-angle-down" aria-hidden="true"></i>
+							<span>成交项</span>
+							<select>
+								<option>10项</option>
+							</select>
+							<i class="fa fa-angle-down" aria-hidden="true"></i>
+						</div>
+						<input type="submit" value="搜索">
+					</form>
+				</section>
+
+				<div id="section-2">
+					<a href="###"><</a>
+					<ul id="detail">
+						<li style="border-top: 3px solid #4388c9;padding-top: 10px;">
+							<p class="time2">10:00 am</p>
+							<p class="money2">¥<span>1200</span></p>
+						</li>
+						<li>
+							<p class="time2">11:00 am</p>
+							<p class="money2">¥<span>1300</span></p>
+						</li>
+						<li>
+							<p class="time2">10:00 am</p>
+							<p class="money2">¥<span>1200</span></p>
+						</li>
+						<li>
+							<p class="time2">01:00 pm</p>
+							<p class="money2">¥<span>1400</span></p>
+						</li>
+						<li>
+							<p class="time2">02:00 pm</p>
+							<p class="money2">¥<span>1500</span></p>
+						</li>
+						<li>
+							<p class="time2">03:00 pm</p>
+							<p class="money2">¥<span>1800</span></p>
+						</li>
+					</ul>
+					<a href="###">></a>
+					<div id="history">
+						<i class="fa fa-calendar" aria-hidden="true"></i>
+						<span>历史查询</span>
+					</div>
+				</div>
+
+				<div id="section-3" class="clearfix">
+					<h3>2016年4月份统计</h3>
+					<!-- 成交量volume -->
+					<ul id="volume">
+						<li class="green">
+							<p>133311</p>
+							<p>成交量</p>
+							<div class="greenDiv Div"></div>
+						</li>
+						<li class="blue">
+							<p>133311</p>
+							<p>成交量</p>
+							<div class="blueDiv Div"></div>
+						</li>
+						<li class="red">
+							<p>133311</p>
+							<p>成交量</p>
+							<div class="redDiv Div"></div>
+						</li>
+						<li class="yellow">
+							<p>133311</p>
+							<p>成交量</p>
+							<div class="yellowDiv Div"></div>
+						</li>
+					</ul>
+				</div>
+
+				<div id="section-4">
+					<div id="project-table">
+						<div id="project-title" class="title">第一组项目</div>
+						<ul id="project-tab">
+							<li style="background: white;border: 2px solid #e1e1e2;border-bottom: 0;">
+								项目一
+								<div id="tab-menu1">
+									<div class="table">
+										<table border="1">
+											<tbody>
+												<tr>
+													<td>材料一</td>
+													<td>材料一</td>
+													<td>材料一</td>
+													<td>材料一</td>
+												</tr>
+												<tr>
+													<td>材料一</td>
+													<td>材料一</td>
+													<td>材料一</td>
+													<td>材料一</td>
+												</tr>
+												<tr>
+													<td>材料一</td>
+													<td>材料一</td>
+													<td>材料一</td>
+													<td>材料一</td>
+												</tr>
+												<tr>
+													<td>材料一</td>
+													<td>材料一</td>
+													<td>材料一</td>
+													<td>材料一</td>
+												</tr>
+												<tr>
+													<td>材料一</td>
+													<td>材料一</td>
+													<td>材料一</td>
+													<td>材料一</td>
+												</tr>
+												<tr>
+													<td>材料一</td>
+													<td>材料一</td>
+													<td>材料一</td>
+													<td>材料一</td>
+												</tr>
+											</tbody>
+									</table>
+									</div>
+								</div>
+							</li>
+							<li>项目一</li>
+							<li>项目一</li>
+							<li>项目一</li>
+							<li>项目一</li>
+						</ul>
+					</div>
+					<div id="project-detail">
+						<div id="project-title" class="title">第一组项目</div>
+						<div id="detail-title">
+							<h4>标题</h4>
+							<p>项目报表三</p>
+						</div>
+						<div id="price">
+							<p class="p1">价格</p>
+							<p class="p2">¥ 158</p>
+						</div>
+						<div id="manger">
+							<p class="p1">负责人</p>
+							<p class="p2">小A</p>
+						</div>
+						<div id="detail-describe">
+							<p>详细描述</p>
+							<p>该项目目前负责人是......</p>
+						</div>
+						<div id="secret">
+							<label>
+								<input type="checkbox" id="checkbox">
+								<span>遵守保密协议</span>
+							</label>
+							<input type="button" value="搜索">
+						</div>
+					</div>
+				</div>
+
+				<div id="section-5">
+					<div id="calendar">
+						<div id="date">
+							<select class="year">
+								<option>2016年</option>
+								<option>2017年</option>
+								<option>2018年</option>
+							</select>
+							<i class="fa fa-caret-down" aria-hidden="true"></i>
+							<select class="month">
+								<option>4月</option>
+								<option>5月</option>
+								<option>6月</option>
+							</select>
+							<i class="fa left fa-angle-left" aria-hidden="true"></i>
+							<i class="fa down fa-caret-down" aria-hidden="true"></i>
+							<i class="fa right fa-angle-right" aria-hidden="true"></i>
+							<select class="day">
+								<option disabled selected>标注日期</option>
+								<option>待编辑</option>
+								<option>待编辑</option>
+								<option>待编辑</option>
+							</select>
+							<i class="fa fa-caret-down" aria-hidden="true"></i>
+							<a href="###" class="today">返回今天</a>
+						</div>
+						<ul id="week">
+							<li>一</li>
+							<li>二</li>
+							<li>三</li>
+							<li>四</li>
+							<li>五</li>
+							<li>六</li>
+							<li>日</li>
+						</ul>
+						<ul class="calendar">
+							<li></li>
+							<li></li>
+							<li></li>
+							<li></li>
+							<li>
+								<p>1</p>
+								<p class="holiday">愚人节</p>
+							</li>
+							<li>
+								<p>2</p>
+								<p>廿五</p>
+							</li>
+							<li>
+								<p>3</p>
+								<p>廿六</p>
+							</li>
+							<li>
+								<p>4</p>
+								<p>廿七</p>
+							</li>
+							<li>
+								<p>5</p>
+								<p class="holiday">清明</p>
+							</li>
+							<li>
+								<p>6</p>
+								<p>廿九</p>
+							</li>
+							<li style="border: 1px solid #f4c21d;">
+								<p>7</p>
+								<p>三月</p>
+							</li>
+							<li>
+								<p>8</p>
+								<p>初二</p>
+							</li>
+							<li>
+								<p>9</p>
+								<p>初三</p>
+							</li>
+							<li>
+								<p>10</p>
+								<p>初四</p>
+							</li>
+							<li>
+								<p>11</p>
+								<p>初五</p>
+							</li>
+							<li>
+								<p>12</p>
+								<p>初六</p>
+							</li>
+							<li>
+								<p>13</p>
+								<p>初七</p>
+							</li>
+							<li>
+								<p>14</p>
+								<p>初八</p>
+							</li>
+							<li>
+								<p>15</p>
+								<p>初九</p>
+							</li>
+							<li>
+								<p>16</p>
+								<p>初十</p>
+							</li>
+							<li>
+								<p>17</p>
+								<p>十一</p>
+							</li>
+							<li>
+								<p>18</p>
+								<p>十二</p>
+							</li>
+							<li>
+								<p>19</p>
+								<p>十三</p>
+							</li>
+							<li>
+								<p>20</p>
+								<p>十四</p>
+							</li>
+							<li>
+								<p>21</p>
+								<p>十五</p>
+							</li>
+							<li>
+								<p>22</p>
+								<p>十六</p>
+							</li>
+							<li>
+								<p>23</p>
+								<p>十七</p>
+							</li>
+							<li>
+								<p>24</p>
+								<p>十八</p>
+							</li>
+							<li>
+								<p>25</p>
+								<p>十九</p>
+							</li>
+							<li>
+								<p>26</p>
+								<p>廿十</p>
+							</li>
+							<li>
+								<p>27</p>
+								<p>廿一</p>
+							</li>
+							<li>
+								<p>28</p>
+								<p>廿二</p>
+							</li>
+							<li>
+								<p>29</p>
+								<p>廿三</p>
+							</li>
+							<li>
+								<p>30</p>
+								<p>廿四</p>
+							</li>
+							<li></li>
+						</ul>
+					</div>
+					<div id="car">
+						<table border="1" id="car-table">
+							<thead>
+								<tr>
+									<td>排名</td>
+									<td>品牌</td>
+									<td>搜索指数</td>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>1</td>
+									<td>大众</td>
+									<td>48912001
+										<div class="bar bar1"></div>
+									</td>
+								</tr>
+								<tr>
+									<td>2</td>
+									<td>丰田</td>
+									<td>29307333
+										<div class="bar bar2"></div>
+									</td>
+								</tr>
+								<tr>
+									<td>3</td>
+									<td>奥迪</td>
+									<td>23139070
+										<div class="bar bar3"></div>
+									</td>
+								</tr>
+								<tr>
+									<td>4</td>
+									<td>本田</td>
+									<td>22885564
+										<div class="bar bar4"></div>
+									</td>
+								</tr>
+								<tr>
+									<td>5</td>
+									<td>福特</td>
+									<td>22324792
+										<div class="bar bar5"></div>
+									</td>
+								</tr>
+								<tr>
+									<td>6</td>
+									<td>宝马</td>
+									<td>21444077
+										<div class="bar bar6"></div>
+									</td>
+								</tr>
+								<tr>
+									<td>7</td>
+									<td>现代</td>
+									<td>20114969
+										<div class="bar bar7"></div>
+									</td>
+								</tr>
+								<tr>
+									<td>8</td>
+									<td>起亚</td>
+									<td>19251680
+										<div class="bar bar8"></div>
+									</td>
+								</tr>
+								<tr>
+									<td>9</td>
+									<td>奔驰</td>
+									<td>19172837
+										<div class="bar bar9"></div>
+									</td>
+								</tr>
+								<tr>
+									<td>10</td>
+									<td>别克</td>
+									<td>18544027
+										<div class="bar bar10"></div>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+</html>
