@@ -16,7 +16,9 @@
   <div>您输入的值是：<span id="aqi-display">尚无录入</span></div>
 
 <script type="text/javascript">
-
+  var aqiInput=$('#aqi-input');
+  var btn=$('#button');
+  var aqiDisplay=$('#aqi-display');
 (function() {
   /*	
   在注释下方写下代码
@@ -24,9 +26,6 @@
   在事件处理函数中
   获取aqi-input输入的值，并显示在aqi-display中
   */
-  var aqiInput=$('#aqi-input');
-  var btn=$('#button');
-  var aqiDisplay=$('#aqi-display');
 
   function display() {
     aqiDisplay.html(aqiInput.val());
